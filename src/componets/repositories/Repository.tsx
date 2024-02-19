@@ -12,7 +12,7 @@ export default function Repository({ repo }: { repo: Repo }) {
     useEffect(() => {
         getDate(repo.created_at);
     }, [repo.created_at])
-    
+
     return (
         <div className="border p-4 rounded-md">
             <h3 className="font-bold text-lg mb-2">{repo.name}</h3>

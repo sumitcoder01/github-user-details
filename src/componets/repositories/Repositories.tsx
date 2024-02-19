@@ -10,7 +10,7 @@ export default function Repositories({ repos }: { repos: Repo[] }) {
         <div className="mt-5">
             <div className="flex  justify-center md:justify-start"><SearchRepo query={query} setQuery={setQuery} /></div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {(query.length !== 0 ? repos.filter(repo => repo.name.toLowerCase().includes(query.toLowerCase())) : repos).map(repo => (
+                {(query.length !== 0 ? repos.filter(repo => repo.name.trim().toLowerCase().includes(query.trim().toLowerCase())) : repos).map(repo => (
                     <Repository key={repo.id} repo={repo} />
                 ))}
             </div>

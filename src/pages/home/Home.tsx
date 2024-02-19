@@ -17,24 +17,31 @@ export default function Home() {
     const fetchUser = async (): Promise<void> => {
         try {
             const userResponse = await fetch(BASE_URL + userName);
+            if (!userResponse.ok) {
+                throw new Error('User not found');
+            }
             const userData: User = await userResponse.json() as User;
             setUser(userData);
         } catch (error) {
             setUser(null);
-            console.log('Error! User not found');
+            console.error('Error! User not found', error);
         }
     }
-
+    
     const fetchRepos = async (): Promise<void> => {
         try {
             const reposResponse = await fetch(BASE_URL + userName + "/repos");
+            if (!reposResponse.ok) {
+                throw new Error('Repos not found');
+            }
             const reposData: Repo[] = await reposResponse.json() as Repo[];
             setRepos(reposData);
         } catch (error) {
             setRepos(null);
-            console.log('Error! Repos not found');
+            console.error('Error! Repos not found', error);
         }
     }
+    
 
     const searchUser = async (): Promise<void> => {
         setLoading(true);
